@@ -10,3 +10,10 @@ export function addTodo(text) {
     },
   };
 }
+
+export function toggleTodo(id) {
+  return {
+    type: todosActionsTypes.TOGGLE_TODO,
+    payload: { id },
+  };
+}
