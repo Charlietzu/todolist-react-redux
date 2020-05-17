@@ -1,7 +1,7 @@
 import todosReducer, { initialState } from "./index";
 import { expect } from "chai";
 import deepFreeze from "deep-freeze";
-import * as todosActions from "./todosActionTypes";
+import * as todosActionsTypes from "./todosActionTypes";
 
 it("todosReducer should be a function", () => {
   expect(todosReducer).to.be.a("function");
@@ -10,7 +10,7 @@ it("todosReducer should be a function", () => {
 it("should add a todo item", () => {
   const before = deepFreeze([]);
   const action = deepFreeze({
-    type: todosActions.ADD_TODO,
+    type: todosActionsTypes.ADD_TODO,
     payload: {
       id: 0,
       text: "Test",
@@ -35,7 +35,7 @@ it("should add another todo item", () => {
     },
   ]);
   const action = deepFreeze({
-    type: todosActions.ADD_TODO,
+    type: todosActionsTypes.ADD_TODO,
     payload: {
       id: 1,
       text: "Another test",
@@ -70,7 +70,7 @@ it("should toggle first todo", () => {
     },
   ]);
   const action = deepFreeze({
-    type: todosActions.TOGGLE_TODO,
+    type: todosActionsTypes.TOGGLE_TODO,
     payload: { id: 0 },
   });
   const after = [
@@ -102,7 +102,7 @@ it("should toggle another todo", () => {
     },
   ]);
   const action = deepFreeze({
-    type: todosActions.TOGGLE_TODO,
+    type: todosActionsTypes.TOGGLE_TODO,
     payload: { id: 1 },
   });
   const after = [
