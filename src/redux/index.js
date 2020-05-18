@@ -1,11 +1,19 @@
-import todosReducer from "./todos/index";
-import visibilityReducer from "./visibility-filter/index";
+import todos from "./todos/index";
+import visibilityFilter from "./visibility-filter/index";
+import { combineReducers } from "redux";
 
-const rootReducer = (state = {}, action) => {
-  return {
-    todos: todosReducer(state.todos, action),
-    visibilityFilter: visibilityReducer(state.visibilityFilter, action),
+/* Manual implementation of the combineReducers function:
+
+  const combineReducers = (reducers) => {
+  return (state = {}, action) => {
+    return Object.keys(reducers).reduce((nextState, key) => {
+      nextState[key] = reducers[key](state[key], action);
+      return nextState;
+    }, {});
   };
-};
+}; */
 
-export default rootReducer;
+export default combineReducers({
+  todos,
+  visibilityFilter,
+});
