@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as filterCategories from "../../redux/visibility-filter/filterCategories";
-//import * as filterActions from "../../redux/visibility-filter/filterActionTypes";
+import { setVisibilityFilter } from "../../redux/visibility-filter/filterActionCreators";
 
-export const Filter = ({ activeFilter }) => (
+export const Filter = ({ activeFilter, handleFilter }) => (
   <>
     <h3>Show</h3>
     {filterItems.map((item) => {
@@ -16,7 +16,12 @@ export const Filter = ({ activeFilter }) => (
       }
 
       return (
-        <a href="teste" key={item.action} style={{ marginRight: 10 }}>
+        <a
+          href="teste"
+          key={item.action}
+          onClick={handleFilter(item.action)}
+          style={{ marginRight: 10 }}
+        >
           {item.label}
         </a>
       );
@@ -43,4 +48,11 @@ const mapStateToProps = (state) => ({
   activeFilter: state.visibilityFilter,
 });
 
-export default connect(mapStateToProps)(Filter);
+const mapDispatchToProps = (dispatch) => ({
+  handleFilter: (filter) => (e) => {
+    e.preventDefault();
+    dispatch(setVisibilityFilter(filter));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);
